@@ -1,0 +1,10 @@
+%h1 Confirm Your Order
+%h3 Title: #{@order.title}
+%h5 Subtotal: #{number_to_currency(@order.subtotal)}
+%h5 PST: #{number_to_currency(@order.pst)}
+%h5 GST: #{number_to_currency(@order.gst)}
+%h5 Total: #{number_to_currency(@order.total)}
+.form
+  = form_for :order, url: orders_path do |f|
+    = f.hidden_field(:book_id, value: @order.id)
+    = f.submit "Buy now"

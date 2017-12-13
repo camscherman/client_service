@@ -1,0 +1,6 @@
+%h1 My Orders
+- @orders.each do |order|
+  %div{class: "card"}
+  %p Title: #{order.title}
+  %p Price: #{number_to_currency(order.price)}
+  %p Order Status: #{order.status}

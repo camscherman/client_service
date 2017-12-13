@@ -1,0 +1,7 @@
+%div
+  %h1= @book[:title].titleize
+  %p= @book[:description]
+  %strong #{number_to_currency(@book[:price])}
+  %p= @book[:genre]
+  - if user_signed_in?
+    %button{class: 'btn btn-primary'}= link_to 'Buy me', order_path(@book[:id])

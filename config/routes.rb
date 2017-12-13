@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'orders/new'
+
+  get 'orders/create'
+
   get 'books/show'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -10,4 +14,5 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :catalogs, only: [:index, :show]
   resources :books, only: [:show, :index]
+  resources :orders, only: [:show, :create, :index]
 end

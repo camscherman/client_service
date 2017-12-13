@@ -1,0 +1,4 @@
+%h1 Catalogs
+%ul
+- @catalogs.each do |catalog|
+  %li=  link_to catalog[:name], catalog_path(catalog[:id])

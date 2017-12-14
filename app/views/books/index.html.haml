@@ -1,3 +1,8 @@
-%h1 View All Books
-- @books.each do |book|
-  %p= link_to book[:title], book_path(book[:id])
+%div{class: 'container'}
+  %div{class:'row'}
+    %h1 View All Books
+    %div{class:'form-group ml-auto'}
+      %label{for:'filter'}Find Book
+      %input{type:'text', name: 'filter', id:'filter' ,class: 'ml-auto'}
+  - @books.each do |book|
+    %p{class: "book-item"}= link_to book[:title], book_path(book[:id])

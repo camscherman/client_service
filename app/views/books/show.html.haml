@@ -1,5 +1,7 @@
-%div
-  %h1= @book[:title].titleize
+%div{class:'container'}
+  %div{class:'row'}
+    %h1{class:'mr-auto'}= @book[:title].titleize
+
   %p= @book[:description]
   %strong #{number_to_currency(@book[:price])}
   %p= @book[:genre]

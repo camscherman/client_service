@@ -1,3 +1,4 @@
-%h1= @catalog[:name]
-- @catalog[:catalog][:books].each do |book|
-  %p= link_to book[:title], book_path(book[:id])
+%div{class:'container'}
+  %h1= @catalog[:catalog][:name]
+  - @catalog[:catalog][:books].each do |book|
+    %p= link_to book[:title], book_path(book[:id])

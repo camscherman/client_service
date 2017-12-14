@@ -14,3 +14,16 @@
  *= require_self
  */
 @import "bootstrap";
+
+.hidden {
+  visibility: hidden;
+  height: 0px;
+  width: 0px;
+  margin:0;
+}
+.jumbotron{
+  margin-top:100px;
+}
+.container{
+  margin-top:40px;
+}

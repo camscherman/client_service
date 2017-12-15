@@ -29,6 +29,7 @@ gem 'faraday'
 gem 'haml'
 gem 'bootstrap'
 gem 'jquery-rails'
+gem 'rack-cors'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

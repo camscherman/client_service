@@ -32,12 +32,12 @@ class Orders::MakeOrderService
   end
 
   def createOrder
-    Order.create({title: @title, upc_code: @upc_code, price: @total, user_id: @user[:id]})
-    sendOrderToApi
+    order = Order.create({title: @title, upc_code: @upc_code, price: @total, user_id: @user[:id]})
+    sendOrderToApi(order.id)
   end
 
-  def sendOrderToApi
-    params = { order: { upc_code: @upc_code , user_email: @user.email }}
+  def sendOrderToApi(id)
+    params = { order: { upc_code: @upc_code , user_email: @user.email, client_order_id: id }}
     api_call('orders', params)
   end
 

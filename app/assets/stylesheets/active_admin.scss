@@ -15,3 +15,22 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+.shipped{
+  color: red;
+}
+
+.pending{
+  color:green;
+}
+
+.admin_flash{
+
+  // padding: 30px;
+  height: 60px;
+  width: 800px;
+  border-radius: 5px;
+  background-color: salmon;
+  font-size: 25px;
+  align-content: center;
+  box-sizing: border-box;
+}

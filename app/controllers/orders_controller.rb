@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:update]
   def show
     user = current_user
     @order = Orders::MakeOrderService.new(params[:id], user)
@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 
   def create
     user = current_user
-    @order = Orders::MakeOrderService.new(params[:order][:book_id], user)
+    @order = Orders::MakeOrderService.new(order_params[:book_id], user)
     @order.calculateTotal
     @order.createOrder
     flash[:alert] = "Order Submitted"
@@ -19,6 +19,19 @@ class OrdersController < ApplicationController
   def index
     user = current_user
     @orders = user.orders
+  end
+
+  def update
+    # render json: order_params
+    order = Order.find(params[:id])
+    # byebug
+    order.update({status: "shipped"})
+    render json: {update: "success"}
+  end
+
+  private
+  def order_params
+    params.require(:order).permit(:book_id)
   end
 
 

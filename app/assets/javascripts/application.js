@@ -15,3 +15,5 @@
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require_tree .
+function tester(){
+    return -1}

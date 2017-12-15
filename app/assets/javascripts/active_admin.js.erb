@@ -1,0 +1,54 @@
+#= require active_admin/base
+
+const LOCAL_BASE_URL = 'http://localhost:3001/api/v1'
+const flashNode = document.createElement('div')
+const API_KEY = `<%= ENV['API_KEY'] %>`
+flashNode.classList.add('admin_flash')
+flashNode.innerHTML = '<h3>Order Shipped</h3>'
+
+function flashMessage(){
+  document.querySelector('.flashes').appendChild(flashNode)
+  setTimeout(()=>{flashNode.remove()}, 3000)
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  const links = document.querySelectorAll('.shipping')
+  // debugger
+  links.forEach(link=>{
+
+    link.href = 'javascript:void(0)'
+    link.addEventListener('click', event=>{
+
+      const parent = event.currentTarget.parentElement.parentElement
+      const title = parent.querySelector('.title').innerHTML
+      const email = parent.querySelector('.email').innerHTML
+      const upc_code = parent.querySelector('.upc_code').innerHTML
+
+
+      const client_order_id = parent.querySelector('.id').innerHTML
+        const params = {
+            shipment:{
+                email: email,
+                upc_code: upc_code,
+                client_order_id: client_order_id
+            }
+        }
+
+      fetch(`${LOCAL_BASE_URL}/shipments`, {'method':'POST',
+          "headers": {
+            "Content-Type": 'application/json',
+            "api_key": API_KEY
+          },
+          "body": JSON.stringify(params)
+      }).then(res=> {
+        parent.querySelector('.status').classList.add('shipped')
+        parent.querySelector('.status').classList.remove('pending')
+        parent.querySelector('.status').innerHTML = "shipped"
+        parent.querySelector('.shipping').innerHTML ="shipped"
+        flashMessage()
+      })
+
+    })
+
+  })
+})
